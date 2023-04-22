@@ -12,7 +12,7 @@ db.aulas.insertMany([
     {
         disciplina: "IF669",
         monitores: [11122233344],
-        data: new Date('2022-01-10'),
+        data: new Date('2020-01-10'),
         duracao_em_horas: 2,
         conteudo: "Comandos condicionais"
     },
