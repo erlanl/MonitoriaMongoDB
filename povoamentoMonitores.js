@@ -91,6 +91,32 @@ db.monitores.insertMany([
         matricula: 99900011122,
         disciplina: "IF685",
         tipo: "Voluntario"
+    },
+
+    {
+        nome: "Raissa Heimann",
+        email: "rh@cin.ufpe.br",
+        matricula: 92200011122,
+        disciplina: "IF685",
+        tipo: "Chefe",
+        conta_bancaria: {
+            numero_conta: 3344422263,
+            agencia: 3341,
+            banco: "Banco do Brasil"
+        }
+    }, 
+
+    {
+        nome: "Isabela Marinho",
+        email: "imr@cin.ufpe.br",
+        matricula: 93322442122,
+        disciplina: "IF685",
+        tipo: "Chefe",
+        conta_bancaria: {
+            numero_conta: 2244446577,
+            agencia: 3221,
+            banco: "Banco do Brasil"
+        }
     }, 
 
     {
