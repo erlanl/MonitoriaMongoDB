@@ -1,6 +1,12 @@
-//Povoamento collections Aulas
 db = db.getSiblingDB("monitoria");
+//Dropando todas as collections
 db.aulas.drop();
+db.disciplinas.drop();
+db.feedback.drop();
+db.monitores.drop();
+db.monitoria.drop();
+
+//Povoamento collections Aulas
 db.aulas.insertMany([
     {
         codigo: 1,
@@ -401,8 +407,6 @@ db.aulas.insertMany([
 ]);
 
 //Povoamento Disciplinas
-db = db.getSiblingDB("monitoria");
-db.disciplinas.drop();
 db.disciplinas.insertMany([
     {
         nome: "Álgebra Vetorial e Linear para Computação",
@@ -546,8 +550,6 @@ db.disciplinas.insertMany([
 ]);
 
 //Povoamento FeedBack
-db = db.getSiblingDB("monitoria");
-db.feedback.drop();
 db.feedback.insertMany([
     {
       matricula: 11122233344,
@@ -738,8 +740,6 @@ db.feedback.insertMany([
 ]);
 
 //Povoamento Monitores
-db = db.getSiblingDB("monitoria");
-db.monitores.drop();
 db.monitores.insertMany([
     {
         nome: "Erlan Lira",
@@ -1049,8 +1049,6 @@ db.monitores.insertMany([
 ]);
 
 //Povoamento Monitoria
-db = db.getSiblingDB("monitoria");
-db.monitoria.drop();
 db.monitoria.insertMany([
     {
         disciplina: "IF669",
