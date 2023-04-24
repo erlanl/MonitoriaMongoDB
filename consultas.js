@@ -9,14 +9,17 @@ db.disciplinas.find({
 }, {nome: true, codigo: true, _id: false})
 
 //USE
-//AGGREGATE
-//MATCH
+// Calcula a média da duração das monitorias de cada disciplina de 2022.1
+// aggregate, $match, $group, $avg
+db.aulas.aggregate([
+    { $match: {data: {$gt: new Date('2022-01-01'), $lt: new Date('2022-06-01')}}},
+    { $group: {_id: "$disciplina", avgValue: {$avg: "$duracao_em_horas"}}}
+])
+
 //PROJECT
-//GROUP
 //SUM
 //COUNT
 //MAX
-//AVG
 //SORT
 //LIMIT
 //MAPREDUCE
