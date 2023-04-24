@@ -7,7 +7,6 @@ db.disciplinas.find({
     })}
 
 }, {nome: true, codigo: true, _id: false})
-
 //USE
 //AGGREGATE
 //MATCH
