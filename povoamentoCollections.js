@@ -93,7 +93,7 @@ db.aulas.insertMany([
         codigo: 10,
         disciplina: "IF685",
         monitores: [93322442122, 92200011122],
-        data: new Date('2023-08-02'),
+        data: new Date('2022-08-02'),
         duracao_em_horas: 24,
         conteudo: "Introdução a OR"
     },
