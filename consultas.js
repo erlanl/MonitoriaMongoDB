@@ -1,5 +1,5 @@
 //Selecione o nome e código das disciplina das monitorias que possuem 2 ou mais monitores
-//$size, $exists, $eq, $gte, $find, $WHERE
+//$size, $exists, $eq, $gte, $find
 db.disciplinas.find({
     codigo: {$in:db.monitoria.distinct("disciplina", {
         monitores: { $exists: true, $ne: [] },
@@ -7,6 +7,7 @@ db.disciplinas.find({
     })}
 
 }, {nome: true, codigo: true, _id: false})
+
 //USE
 //AGGREGATE
 //MATCH
@@ -24,6 +25,7 @@ db.disciplinas.find({
 //ALL
 //SET
 //TEXT
+//$WHERE
 //SEARCH
 //FILTER
 //UPDATE
