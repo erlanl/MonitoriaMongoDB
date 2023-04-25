@@ -93,8 +93,13 @@ db.aulas.aggregate([
     }}
 ])
 
+// Renomeia as collections feedback e monitoria para ficarem no plural
+// renameCollection
+db.feedback.renameCollection("feedbacks")
+db.monitoria.renameCollection("monitorias")
+show collections // Retorna as collections do db monitoria para mostrar que as collections foram renomeadas
+
 //USE
 //MAX
 //MAPREDUCE
 //SAVE
-//RENAMECOLLECTION
