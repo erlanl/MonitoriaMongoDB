@@ -46,11 +46,11 @@ db.feedback.find({ $text: { $search: "semestre intenso" } }, {matricula_monitor:
 // addToSet
 db.aulas.updateOne({codigo: 2}, {$addToSet: {monitores: 20220040}})
 
-// Selecionanto as aulas de monitoria que duraram mais de 3 horas
-// $where, function
+// Contando a quantidade de aulas que tiveram mais de 3 horas de duracao
+// $where, function, count
 db.aulas.find({$where: function() {
     return this.duracao_em_horas > 3;
-}})
+}}).count()
 
 // Retorna uma das monitorias que possuem tanto Felipe Oliveira, quanto Fernanda Almeida como monitores
 // all e findOne
@@ -94,9 +94,7 @@ db.aulas.aggregate([
 ])
 
 //USE
-//COUNT
 //MAX
 //MAPREDUCE
 //SAVE
 //RENAMECOLLECTION
-//COND
