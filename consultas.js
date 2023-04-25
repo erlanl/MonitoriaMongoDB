@@ -37,6 +37,11 @@ db.feedback.aggregate([
     {$limit: 3}
 ])
 
+//Verifique a matricula e o feedback dos monitores que informaram que tiveram um "semestre intenso"
+//TEXT e SEARCH
+db.feedback.createIndex({ feedback: "text" })
+db.feedback.find({ $text: { $search: "semestre intenso" } }, {matricula_monitor: true, feedback: true, _id: false})
+
 //USE
 //SUM
 //COUNT
@@ -44,9 +49,7 @@ db.feedback.aggregate([
 //MAPREDUCE
 //FUNCTION
 //ALL
-//TEXT
 //$WHERE
-//SEARCH
 //FILTER
 //SAVE
 //RENAMECOLLECTION
