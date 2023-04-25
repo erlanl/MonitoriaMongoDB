@@ -46,14 +46,19 @@ db.feedback.find({ $text: { $search: "semestre intenso" } }, {matricula_monitor:
 // addToSet
 db.aulas.updateOne({codigo: 2}, {$addToSet: {monitores: 20220040}})
 
+// Selecionanto as aulas de monitoria que duraram mais de 3 horas
+// $where, function
+db.aulas.find({$where: function() {
+    return this.duracao_em_horas > 3;
+}})
+
+
 //USE
 //SUM
 //COUNT
 //MAX
 //MAPREDUCE
-//FUNCTION
 //ALL
-//$WHERE
 //FILTER
 //SAVE
 //RENAMECOLLECTION
