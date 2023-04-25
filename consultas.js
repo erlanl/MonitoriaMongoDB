@@ -1,3 +1,5 @@
+use monitoria;
+
 // Selecione o nome e código das disciplina das monitorias que possuem 2 ou mais monitores
 // $size, $exists, $eq, $gte, $find
 db.disciplinas.find({
@@ -136,7 +138,3 @@ db.disciplinas.mapReduce(
     }
   }
 )
-
-
-//USE
-//SAVE
