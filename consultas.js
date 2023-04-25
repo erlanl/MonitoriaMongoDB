@@ -42,6 +42,10 @@ db.feedback.aggregate([
 db.feedback.createIndex({ feedback: "text" })
 db.feedback.find({ $text: { $search: "semestre intenso" } }, {matricula_monitor: true, feedback: true, _id: false})
 
+// Adicionando um monitor na aula de codigo 2
+// addToSet
+db.aulas.updateOne({codigo: 2}, {$addToSet: {monitores: 20220040}})
+
 //USE
 //SUM
 //COUNT
@@ -55,4 +59,3 @@ db.feedback.find({ $text: { $search: "semestre intenso" } }, {matricula_monitor:
 //RENAMECOLLECTION
 //COND
 //FINDONE
-//ADDTOSET
