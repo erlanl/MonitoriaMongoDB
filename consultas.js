@@ -52,15 +52,16 @@ db.aulas.find({$where: function() {
     return this.duracao_em_horas > 3;
 }})
 
+// Retorna uma das monitorias que possuem tanto Felipe Oliveira, quanto Fernanda Almeida como monitores
+// all e findOne
+db.monitoria.findOne({monitores: {$all: [55566677788, 20220060]}})
 
 //USE
 //SUM
 //COUNT
 //MAX
 //MAPREDUCE
-//ALL
 //FILTER
 //SAVE
 //RENAMECOLLECTION
 //COND
-//FINDONE
