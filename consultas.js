@@ -99,7 +99,24 @@ db.feedback.renameCollection("feedbacks")
 db.monitoria.renameCollection("monitorias")
 show collections // Retorna as collections do db monitoria para mostrar que as collections foram renomeadas
 
+// Retorna o nome da(s) disciplina(s) com maior carga horaria
+// $max
+db.disciplinas.aggregate([
+    {$group: 
+        {_id: null, max_carga_horaria: {$max: "$carga_horaria"}}
+    },
+
+    {$lookup: 
+        {from: "disciplinas", localField: "max_carga_horaria", foreignField: "carga_horaria", as: "result"}
+    },
+
+    {$unwind: "$result"},
+    
+    {$project: 
+        {_id: 0, Disciplina: "$result.nome"}
+    }
+])
+
 //USE
-//MAX
 //MAPREDUCE
 //SAVE
