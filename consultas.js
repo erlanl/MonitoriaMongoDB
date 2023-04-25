@@ -46,7 +46,7 @@ db.feedback.aggregate([
 //Verifique a matricula e o feedback dos monitores que informaram que tiveram um "semestre intenso"
 //TEXT e SEARCH
 db.feedback.createIndex({ feedback: "text" })
-db.feedback.find({ $text: { $search: "semestre intenso" } }, {matricula_monitor: true, feedback: true, _id: false})
+db.feedback.find({ $text: { $search: "\"semestre intenso\"" } }, {matricula_monitor: true, feedback: true, _id: false})
 
 // Adicionando um monitor na aula de codigo 2
 // addToSet
