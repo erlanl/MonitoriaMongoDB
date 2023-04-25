@@ -21,12 +21,26 @@ db.aulas.aggregate([
 db.disciplinas.updateOne({codigo: "IF668"}, {$set: {professor: "Filipe Calegario"}})
 db.disciplinas.find({codigo: "IF668"}).pretty() // exibe os dados da disciplina de introdução à computação, mostrando que a alteração foi feita
 
+//Retorne o top 3 dos monitores com maiores feedbacks, retornem também a quantidade de caracteres do feedback, nome, email e matricula do monitor, assim como o código da discplina monitorada por ele.
+//LIMIT, LOOKUP, PROJECT
+db.feedback.aggregate([
+    {$project: {_id: 0, matricula_monitor: 1, disciplina: 1, email: 1, feedback_length: {$strLenCP: "$feedback"}}},
+    {$sort: {feedback_length: -1}},
+    {$lookup: {
+      from: "monitores",
+      localField: "matricula_monitor",
+      foreignField: "matricula",
+      as: "monitor_info"
+    }},
+    {$unwind: "$monitor_info"},
+    {$project: {matricula_monitor: "$monitor_info.matricula",  nome_monitor: "$monitor_info.nome", email_monitor: "$monitor_info.email", disciplina_monitorada: "$monitor_info.disciplina", feedback_length: 1}},
+    {$limit: 3}
+])
+
 //USE
-//PROJECT
 //SUM
 //COUNT
 //MAX
-//LIMIT
 //MAPREDUCE
 //FUNCTION
 //ALL
@@ -37,6 +51,5 @@ db.disciplinas.find({codigo: "IF668"}).pretty() // exibe os dados da disciplina 
 //SAVE
 //RENAMECOLLECTION
 //COND
-//LOOKUP
 //FINDONE
 //ADDTOSET
