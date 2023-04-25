@@ -43,26 +43,26 @@ db.feedback.aggregate([
     {$limit: 3}
 ])
 
-//Verifique a matricula e o feedback dos monitores que informaram que tiveram um "semestre intenso"
+//Retorne a matricula e o feedback dos monitores que informaram que tiveram um "semestre intenso"
 //TEXT e SEARCH
 db.feedback.createIndex({ feedback: "text" })
 db.feedback.find({ $text: { $search: "\"semestre intenso\"" } }, {matricula_monitor: true, feedback: true, _id: false})
 
-// Adicionando um monitor na aula de codigo 2
+// Adicionando o monitor de matricula 20220040 na aula de codigo 2
 // addToSet
 db.aulas.updateOne({codigo: 2}, {$addToSet: {monitores: 20220040}})
 
-// Contando a quantidade de aulas que tiveram mais de 3 horas de duracao
+// Retorna a quantidade de aulas que tiveram mais de 3 horas de duracao
 // $where, function, count
 db.aulas.find({$where: function() {
     return this.duracao_em_horas > 3;
 }}).count()
 
-// Retorna uma das monitorias que possuem tanto Felipe Oliveira, quanto Fernanda Almeida como monitores
+// Retorna uma das monitorias que possuem tanto Felipe Oliveira de matricula 55566677788, quanto Fernanda Almeida de matricula 20220060 como monitores
 // all e findOne
 db.monitoria.findOne({monitores: {$all: [55566677788, 20220060]}})
 
-// Retorna se houve monitores o suficientes em cada disciplina nos períodos 2022.1 e .2, com o criterio sendo se havia mais de 1 monitor
+// Retorna se houve monitores o suficientes ou se faltou monitores em cada disciplina nos períodos 2022.1 e .2, com o criterio sendo se havia mais de 1 monitor
 // cond, project, size
 db.monitoria.aggregate(
     {$project: {
@@ -78,7 +78,7 @@ db.monitoria.aggregate(
     }}
 )
 
-//retorna o nome e a quantidade de horas de monitoria que o monitor ministrouimage.png
+//retorna o nome e a quantidade de horas de monitoria que cada monitor ministrou
 //SUM
 db.aulas.aggregate([
     {$lookup: {
@@ -123,7 +123,7 @@ db.disciplinas.aggregate([
     }
 ])
 
-// Retornando o número de disciplina por professor 
+// Retornando o nome e o número de disciplina de cada professor 
 db.disciplinas.mapReduce(
   function() {
     emit(this.professor, 1);
