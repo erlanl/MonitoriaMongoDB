@@ -121,6 +121,22 @@ db.disciplinas.aggregate([
     }
 ])
 
+// Retornando o número de disciplina por professor 
+db.disciplinas.mapReduce(
+  function() {
+    emit(this.professor, 1);
+  },
+  function(key, values) {
+    return Array.sum(values);
+  },
+  {
+    out: { inline: 1 },
+    finalize: function(key, value) {
+      return { professor: key, num_disciplinas: value };
+    }
+  }
+)
+
+
 //USE
-//MAPREDUCE
 //SAVE
