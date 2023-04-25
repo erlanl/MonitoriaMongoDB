@@ -21,6 +21,10 @@ db.aulas.aggregate([
 db.disciplinas.updateOne({codigo: "IF668"}, {$set: {professor: "Filipe Calegario"}})
 db.disciplinas.find({codigo: "IF668"}).pretty() // exibe os dados da disciplina de introdução à computação, mostrando que a alteração foi feita
 
+// Atualiza no banco de dados o professor de Informática Teórica
+db.disciplinas.updateOne({codigo: "IF689"}, {$set: {professor: "Ruy de Queiroz"}})
+db.disciplinas.find({codigo: "IF689"}).pretty()
+
 //Retorne o top 3 dos monitores com maiores feedbacks, retornem também a quantidade de caracteres do feedback, nome, email e matricula do monitor, assim como o código da discplina monitorada por ele.
 //LIMIT, LOOKUP, PROJECT
 db.feedback.aggregate([
