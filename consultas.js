@@ -56,8 +56,28 @@ db.aulas.find({$where: function() {
 // all e findOne
 db.monitoria.findOne({monitores: {$all: [55566677788, 20220060]}})
 
-//USE
+//retorna o nome e a quantidade de horas de monitoria que o monitor ministrouimage.png
 //SUM
+db.aulas.aggregate([
+    {$lookup: {
+        from: "monitores",
+        localField: "monitores",
+        foreignField: "matricula",
+        as: "monitor_info"
+    }},
+    {$unwind: "$monitor_info"},
+
+    {$project: {
+        nome: "$monitor_info.nome", horas_total: {$sum: "$duracao_em_horas"}, _id: false
+    }},
+
+    {$group: {
+        _id: "$nome",
+        horas_total: {$sum: "$horas_total"}
+    }}
+])
+
+//USE
 //COUNT
 //MAX
 //MAPREDUCE
