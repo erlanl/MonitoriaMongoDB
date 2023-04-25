@@ -56,12 +56,27 @@ db.aulas.find({$where: function() {
 // all e findOne
 db.monitoria.findOne({monitores: {$all: [55566677788, 20220060]}})
 
+// Retorna se houve monitores o suficientes em cada disciplina nos períodos 2022.1 e .2, com o criterio sendo se havia mais de 1 monitor
+// cond, project, size
+db.monitoria.aggregate(
+    {$project: {
+        disciplina: 1,
+        periodo: 1,
+        monitores: 1,
+        situacao: {
+            $cond: {
+                if: {$gt: [{$size: "$monitores"}, 1]}, then: 'Monitores suficientes',
+                else: 'Falta monitores'
+            }
+        }
+    }}
+)
+
 //USE
 //SUM
 //COUNT
 //MAX
 //MAPREDUCE
-//FILTER
 //SAVE
 //RENAMECOLLECTION
 //COND
